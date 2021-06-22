@@ -1,0 +1,16 @@
+{
+  "name": "crud_class",
+  "version": "1.0.0",
+  "description": "Creating a calculator to calculate a customers discount who has multiple fixed and variable discounts based on department and company.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwind build src/style.css -o view/css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "postcss-nesting": "^8.0.1",
+    "tailwindcss": "^2.2.2"
+  }
+}
