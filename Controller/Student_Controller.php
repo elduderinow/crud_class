@@ -40,73 +40,77 @@ class Student_Controller
         }
 
 
-
-        //load the view
-        if (isset($_GET['page']) && $_GET['page'] === 'student') {
+        function loadViewStudent($pdo)
+        {
             $students = getStudents($pdo);
-            require 'View/student.php';
-        }
-
-        //load the Create New student view based on getter.
-        if (isset($_GET['student']) && $_GET['student'] === 'Create New') {
-            $students = getStudents($pdo);
-            $getClass = getClasses($pdo);
-
-            //assign the $_POST to a session so the input values get remembered.
-            if (count($_POST) > 0) {
-                $_SESSION['new-student']['fistname'] = $_POST['first_name'];
-                $_SESSION['new-student']['lastname'] = $_POST['last_name'];
-                $_SESSION['new-student']['email'] = $_POST['email_address'];
-                $_SESSION['new-student']['class'] = $_POST['class'];
+            /*
+            foreach ($students as $studentobj) {
+                var_dump($studentobj);
+            }*/
+            if (!isset($_GET['student']) && !isset($_GET['page'])) {
+                require 'View/student.php';
+            }
+            if (isset($_GET['page']) && $_GET['page'] === 'student') {
+                require 'View/student.php';
             }
 
-            //writes data to the SQL server with the correct bindings.
-            if (isset($_SESSION['new-student'])) {
-                $handle = $pdo->prepare('INSERT INTO student (id, firstname, lastname, email, class ) VALUES (:id, :firstname, :lastname, :email, :class )');
-                $handle->bindValue(':id', count($students) + 1);
-                $handle->bindValue(':firstname', $_SESSION['new-student']['fistname']);
-                $handle->bindValue(':lastname', $_SESSION['new-student']['lastname']);
-                $handle->bindValue(':email', $_SESSION['new-student']['email']);
-                $handle->bindValue(':class', $_SESSION['new-student']['class']);
-                $handle->execute();
-            }
-            require 'View/student_signup.php';
-        }
-
-        //load the Detailed student page where the user can also update and delete the student.
-        if (isset($_GET['student']) && $_GET['student'] === 'update') {
-            $stu_select = getSelectedStudent($pdo);
-            $getClass = getClasses($pdo);
-
-
-            if (count($_POST) > 0) {
-                $_SESSION['update-student']['fistname'] = $_POST['first_name'];
-                $_SESSION['update-student']['lastname'] = $_POST['last_name'];
-                $_SESSION['update-student']['email'] = $_POST['email_address'];
-                $_SESSION['update-student']['class'] = $_POST['class'];
-                $_SESSION['update-student']['button'] = $_POST['button'];
-            }
-
-            if (isset($_SESSION['update-student']) && $_SESSION['update-student']['button'] === 'submit') {
-                $handle = $pdo->prepare('UPDATE student SET id=:id, firstname=:firstname, lastname=:lastname, email=:email, class=:class  WHERE id = :id');
-                $handle->bindValue(':id', $stu_select[0]->getSId());
-                $handle->bindValue(':firstname',  $_SESSION['update-student']['fistname']);
-                $handle->bindValue(':lastname',  $_SESSION['update-student']['lastname']);
-                $handle->bindValue(':email', $_SESSION['update-student']['email']);
-                $handle->bindValue(':class', $_SESSION['update-student']['class']);
-                $handle->execute();
-            }
-
-            if (isset($_SESSION['update-student']) && $_SESSION['update-student']['button'] === 'delete') {
+            if (isset($_POST['student']) && $_POST['student'] === 'delete') {
                 $handle = $pdo->prepare('DELETE FROM student WHERE id=:id');
-                $handle->bindValue(':id', $stu_select[0]->getSId());
+                $handle->bindValue(':id', $_POST['id']);
                 $handle->execute();
             }
 
+        }
 
-            require 'View/student_update.php';
+
+        function createNewStudent($pdo)
+        {
+            $getClass = getClasses($pdo);
+            $students = getStudents($pdo);
+            if (isset($_GET['student']) && $_GET['student'] === 'Create New') {
+                if (isset($_POST['first_name'])) {
+                    $handle = $pdo->prepare('INSERT INTO student (firstname, lastname, email, class ) VALUES (:firstname, :lastname, :email, :class )');
+                    $handle->bindValue(':firstname', $_POST['first_name']);
+                    $handle->bindValue(':lastname', $_POST['last_name']);
+                    $handle->bindValue(':email', $_POST['email_address']);
+                    $handle->bindValue(':class', $_POST['class']);
+                    $handle->execute();
+                }
+                require 'View/student_signup.php';
+            }
 
         }
 
+        function updateStudent($pdo)
+        {
+            if (isset($_GET['student']) && $_GET['student'] === 'update') {
+                $getClass = getClasses($pdo);
+                $stu_select = getSelectedStudent($pdo);
+                require 'View/student_update.php';
+
+                if (isset($_POST['first_name']) && $_POST['button'] === 'submit') {
+                    $handle = $pdo->prepare('UPDATE student SET id=:id, firstname=:firstname, lastname=:lastname, email=:email, class=:class  WHERE id = :id');
+                    $handle->bindValue(':id', $stu_select[0]->getSId());
+                    $handle->bindValue(':firstname', $_POST['first_name']);
+                    $handle->bindValue(':lastname', $_POST['last_name']);
+                    $handle->bindValue(':email', $_POST['email_address']);
+                    $handle->bindValue(':class', $_POST['class']);
+                    $handle->execute();
+                }
+
+                if (isset($_POST['first_name']) && $_POST['button'] === 'delete') {
+                    $handle = $pdo->prepare('DELETE FROM student WHERE id=:id');
+                    $handle->bindValue(':id', $stu_select[0]->getSId());
+                    $handle->execute();
+                }
+            }
+        }
+
+        //Load views
+
+            loadViewStudent($pdo);
+
+        updateStudent($pdo);
+        createNewStudent($pdo);
     }
 }

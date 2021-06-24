@@ -7,9 +7,8 @@ class Homepage_Controller
     public function render(array $GET, array $POST)
     {
         $pdo = Connection::Open();
-
         //load the view
-        require 'View/homepage.php';
+        require 'View/student.php';
 
     }
 }

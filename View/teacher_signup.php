@@ -4,12 +4,14 @@
         <div class="container">
 
             <div class="mt-10 sm:mt-0">
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="md:col-span-1">
+                <div class="bg-purple-600 py-4 px-4">
+                    <h3 class="text-lg font-medium leading-6 text-white">Create Teachers</h3>
+                </div>
+                <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
+                    <div class="md:col-span-1 px-4">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Create New Student</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Create new students here
+                                Hello user, create students here.
                             </p>
                         </div>
                     </div>
@@ -40,17 +42,6 @@
                                             <input required type="text" name="email_address" id="email_address"
                                                    autocomplete="email"
                                                    class="p-2 border-gray-200 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                        </div>
-
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="country"
-                                                   class="block text-sm font-medium text-gray-700">Class</label>
-                                            <select id="class" name="class"
-                                                    class="p-2 border-gray-200 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <?php foreach ($getClass as $class): ?>
-                                                    <option value="<?php echo $class->getId() ?>"><?php echo $class->getName() ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
                                         </div>
 
                                     </div>

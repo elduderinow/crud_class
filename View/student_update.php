@@ -3,17 +3,19 @@
     <div>
         <div class="container">
             <div class="mt-10 sm:mt-0">
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="md:col-span-1">
-                        <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Student Update</h3>
-                            <ul>
+                <div class="bg-blue-600 py-4 px-4">
+                    <h3 class="text-lg font-medium leading-6 text-white">Update Students</h3>
+                </div>
+                <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
+                    <div class="md:col-span-1 px-4">
+                        <div class="px-4 sm:px-0 ">
+                            <ul class="mt-1 text-sm text-gray-600">
                                 <li>ID: <?php echo $stu_select[0]->getSId() ?></li>
                                 <li>Name: <?php echo $stu_select[0]->getSFirstname()." ".$stu_select[0]->getSLastname() ?></li>
                                 <li>Email: <?php echo $stu_select[0]->getSEmail() ?></li><br>
                                 <li>Class: <?php echo $stu_select[0]->getClassName() ?></li>
                                 <li>Location: <?php echo $stu_select[0]->getLocation() ?></li><br>
-                                <li>Teacher: <?php echo $stu_select[0]->getTFirstname()." ".$stu_select[0]->getTLastname() ?></li>
+                                <li>Teacher: <a class="hover:text-blue-500" href="/?id=<?php echo $stu_select[0]->getTId() ?>&teacher=update"><?php echo $stu_select[0]->getTFirstname()." ".$stu_select[0]->getTLastname() ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,14 +58,13 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                    <button name="button" value="delete" type="submit"
+                                        <a href="?page=student"><button name="button" value="delete" type="submit"
                                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                        Delete
-                                    </button>
+                                        </button></a>
                                     <button name="button" value="submit" type="submit"
                                             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                        Update

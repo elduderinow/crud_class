@@ -9,12 +9,12 @@ require 'Model/TeacherLoader.php';
 
 
 //include all your controllers here
-require 'Controller/Homepage_Controller.php';
 require 'Controller/Student_Controller.php';
 require 'Controller/Teacher_Controller.php';
+require 'Controller/Class_Controller.php';
 //require 'Controller/Class_Controller.php';
 
-$controller = new Homepage_Controller();
+$controller = new Student_Controller();
 
 //Check if student and all routing of student is selected
 if (isset($_GET['page']) && $_GET['page'] === 'student' || isset($_GET['student']) && $_GET['student'] === 'Create New' || isset($_GET['student']) && $_GET['student'] === 'update') {
@@ -24,6 +24,11 @@ if (isset($_GET['page']) && $_GET['page'] === 'student' || isset($_GET['student'
 //Check if Teacher and all routing of teacher is selected
 if (isset($_GET['page']) && $_GET['page'] === 'teacher' || isset($_GET['teacher']) && $_GET['teacher'] === 'Create New' || isset($_GET['teacher']) && $_GET['teacher'] === 'update') {
     $controller = new Teacher_Controller();
+}
+
+//Check if Teacher and all routing of teacher is selected
+if (isset($_GET['page']) && $_GET['page'] === 'class' || isset($_GET['class']) && $_GET['class'] === 'Create New' || isset($_GET['class']) && $_GET['class'] === 'update') {
+    $controller = new Class_Controller();
 }
 
 $controller->render($_GET, $_POST);

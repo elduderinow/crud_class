@@ -44,17 +44,19 @@ class studentSelect {
     private string $s_email;
     private string $className;
     private string $location;
+    private int $t_id;
     private string $t_firstname;
     private string $t_lastname;
 
 
-    public function __construct(int $s_id, string $s_firstname, string $s_lastname, string $s_email, string $className,string $location,string $t_firstname,string $t_lastname) {
+    public function __construct(int $s_id, string $s_firstname, string $s_lastname, string $s_email, string $className,string $location, int $t_id, string $t_firstname,string $t_lastname) {
         $this->s_id = $s_id;
         $this->s_firstname = $s_firstname;
         $this->s_lastname = $s_lastname;
         $this->s_email = $s_email;
         $this->className = $className;
         $this->location = $location;
+        $this->t_id = $t_id;
         $this->t_firstname = $t_firstname;
         $this->t_lastname = $t_lastname;
     }
@@ -111,6 +113,14 @@ class studentSelect {
     /**
      * @return string
      */
+    public function getTId(): int
+    {
+        return $this->t_id;
+    }
+
+    /**
+     * @return string
+     */
     public function getTFirstname(): string
     {
         return $this->t_firstname;
@@ -153,7 +163,7 @@ class StudentLoader {
     // Get combination for 1 student
     public function getStudentSelect($pdo)
     {
-        $handle = $pdo->prepare('SELECT student.id studentId, student.firstname,student.lastname,student.email email, class.name className, class.location classLocation, teacher.firstname t_firstname, teacher.lastname t_lastname  FROM student LEFT JOIN class ON student.class = class.id LEFT JOIN teacher ON class.id = teacher.class WHERE student.id = :id');
+        $handle = $pdo->prepare('SELECT student.id studentId, student.firstname,student.lastname,student.email email, class.name className, class.location classLocation,teacher.id t_id, teacher.firstname t_firstname, teacher.lastname t_lastname  FROM student LEFT JOIN class ON student.class = class.id LEFT JOIN teacher ON class.teacherId = teacher.id WHERE student.id = :id');
         $handle->bindValue(':id', $_GET['id']);
         $handle->execute();
         $StudentSelect = $handle->fetchAll();
@@ -164,7 +174,7 @@ class StudentLoader {
     public function createStudentSelect($getStudentSelect)
     {
         foreach ($getStudentSelect as $stu_select) {
-            $new_studentSelect = new studentSelect((int)$stu_select['studentId'], $stu_select['firstname'], $stu_select['lastname'], $stu_select['email'], $stu_select['className'], $stu_select['classLocation'], $stu_select['t_firstname'], $stu_select['t_lastname']);
+            $new_studentSelect = new studentSelect((int)$stu_select['studentId'], $stu_select['firstname'], $stu_select['lastname'], $stu_select['email'], $stu_select['className'], $stu_select['classLocation'], (int)$stu_select['t_id'], $stu_select['t_firstname'], $stu_select['t_lastname']);
             $result[] = $new_studentSelect;
         };
         return $result;

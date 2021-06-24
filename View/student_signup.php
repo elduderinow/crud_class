@@ -4,12 +4,14 @@
         <div class="container">
 
             <div class="mt-10 sm:mt-0">
-                <div class="md:grid md:grid-cols-3 md:gap-6">
-                    <div class="md:col-span-1">
+                <div class="bg-blue-600 py-4 px-4">
+                    <h3 class="text-lg font-medium leading-6 text-white">Create Students</h3>
+                </div>
+                <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
+                    <div class="md:col-span-1 px-4">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Create New Student</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Create new students here
+                                Hello user, create students here.
                             </p>
                         </div>
                     </div>
