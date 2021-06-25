@@ -8,12 +8,12 @@
                     <table class="w-full table-fixed">
                         <thead>
                         <tr>
-                            <th class="bg-purple-600 text-left py-4 px-4 text-white font-normal">Id</th>
-                            <th class="bg-purple-600 text-left py-4 px-4 text-white font-normal">Name</th>
-                            <th class="bg-purple-600 text-right py-4 px-4 text-white font-normal">
+                            <th class="bg-purple-600 text-left py-3 px-4 text-white font-normal">Id</th>
+                            <th class="bg-purple-600 text-left py-3 px-4 text-white font-normal">Name</th>
+                            <th class="bg-purple-600 text-right py-3 px-4 text-white font-normal">
                                 <form method="get">
                                     <input type="submit" name="teacher" value="Create New"
-                                           class="">
+                                           class="transition ease-in-out transition-1000 cursor-pointer w-28 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-400 hover:bg-purple-500 shadow-md">
                                 </form>
 
                             </th>
@@ -22,24 +22,24 @@
                         <tbody>
                         <?php foreach ($getTeachers as $teacher): ?>
                             <tr>
-                                <td class=""><?php echo $teacher->getId() ?></td>
-                                <td class=""><?php echo $teacher->getFirstName() . " " . $teacher->getLastName() ?></td>
-                                <td class="">
+                                <td class="text-gray-800 bg-gray-100 border-b px-4 py-2"><?php echo $teacher->getId() ?></td>
+                                <td class="text-gray-800 bg-gray-100 border-b px-4 py-2"><?php echo $teacher->getFirstName() . " " . $teacher->getLastName() ?></td>
+                                <td class="bg-gray-100 border-b px-4 py-2 text-right">
                                     <form method="get" class="float-right">
                                         <input type="hidden" name="id" value="<?php echo $teacher->getId() ?>"/>
                                         <input type="submit" name="teacher" value="update"
-                                               class="">
+                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600">
                                     </form>
                                     <form method="post" class="float-right">
                                         <input type="hidden" name="id" value="<?php echo $teacher->getId() ?>"/>
                                         <input type="submit" name="teacher" value="delete"
-                                               class="">
+                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600">
                                     </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
-                            <td colspan="3" class=""></td>
+                            <td colspan="3" class="bg-purple-600 px-4 py-2 rounded-bl rounded-br"></td>
                         </tr>
                         </tbody>
                     </table>
