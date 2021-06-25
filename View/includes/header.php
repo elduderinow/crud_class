@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../view/css/style.css">
 
 </head>
-<body class="bg-gray-50 font-mono capitalize">
+<body class="">
+<!--<body class="bg-gray-50 font-mono capitalize">-->
 <header>
     <div class="container">
 

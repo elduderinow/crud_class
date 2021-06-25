@@ -33,7 +33,7 @@
                                     <form method="post" class="float-right">
                                         <input type="hidden" name="id" value="<?php echo $student->getId() ?>"/>
                                         <input type="submit" name="student" value="delete"
-                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-red-600">
+                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-400 hover:bg-gray-600">
                                     </form>
                                 </td>
                             </tr>
