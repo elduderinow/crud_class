@@ -33,13 +33,13 @@
                                     <form method="post" class="float-right">
                                         <input type="hidden" name="id" value="<?php echo $class->getId() ?>"/>
                                         <input type="submit" name="class" value="delete"
-                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-600">
+                                               class="transition ease-in-out transition-1000 m-1 shadow-md capitalize cursor-pointer w-20 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-400 hover:bg-gray-600">
                                     </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
-                            <td colspan="3" class="bg-yellow-500 px-4 py-2 rounded-bl rounded-br""></td>
+                            <td colspan="3" class="bg-yellow-500 px-4 py-2 rounded-bl rounded-br"></td>
                         </tr>
                         </tbody>
                     </table>

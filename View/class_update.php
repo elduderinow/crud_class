@@ -8,7 +8,7 @@
                 </div>
                 <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
                     <div class="md:col-span-1 px-4 shadow overflow-hidden sm:rounded-md bg-white">
-                        <div class="p-5 sm:px-0 ">
+                        <div class="p-5 sm:px-0">
                             <ul class="mt-1 text-sm text-gray-600">
                                 <li>ID: <?php echo $getClassTeach[0]->getId() ?></li>
                                 <li>Name: <?php echo $getClassTeach[0]->getClassName() ?></li>

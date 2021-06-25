@@ -8,45 +8,43 @@ class Student_Controller
     {
         $pdo = Connection::Open();
 
-        //creating class in a loader wrapped in a function to use multiple times.
+        //Requesting all the students
         function getStudents($pdo)
         {
             //get all students
             $studentloader = new StudentLoader($pdo);
             $getstudent = $studentloader->getStudents($pdo);
-            $students = $studentloader->createStudents($getstudent);
-
-            return $students;
+            $result = $studentloader->createStudents($getstudent);
+            return $result;
         }
 
+        //Requesting all the classes.
         function getClasses($pdo)
         {
             //get all classes
             $ClassLoader = new ClassLoader($pdo);
             $getClasses = $ClassLoader->getClasses($pdo);
-            $getClass = $ClassLoader->createClasses($getClasses);
-
-            return $getClass;
+            $result = $ClassLoader->createClasses($getClasses);
+            return $result;
         }
 
+        //Requesting correct student based on the getter ID.
         function getSelectedStudent($pdo)
         {
             //Get selected student
             $studentloader = new StudentLoader($pdo);
             $getStudentSelect = $studentloader->getStudentSelect($pdo);
-            $stu_select = $studentloader->createStudentSelect($getStudentSelect);
-
-            return $stu_select;
+            $result = $studentloader->createStudentSelect($getStudentSelect);
+            return $result;
         }
 
-
+        //Load the student view.
         function loadViewStudent($pdo)
         {
             $students = getStudents($pdo);
-            /*
-            foreach ($students as $studentobj) {
-                var_dump($studentobj);
-            }*/
+
+            //Little workaround for also displaying the student page immediately on the homepage.
+            //I started working on the 3 pages, student, teacher and class, but the homepage itself was empty.
             if (!isset($_GET['student']) && !isset($_GET['page'])) {
                 require 'View/student.php';
             }
@@ -62,7 +60,7 @@ class Student_Controller
 
         }
 
-
+        //Load the create new student page
         function createNewStudent($pdo)
         {
             $getClass = getClasses($pdo);
@@ -81,6 +79,7 @@ class Student_Controller
 
         }
 
+        //Loading the update student page
         function updateStudent($pdo)
         {
             if (isset($_GET['student']) && $_GET['student'] === 'update') {
@@ -106,10 +105,8 @@ class Student_Controller
             }
         }
 
-        //Load views
-
-            loadViewStudent($pdo);
-
+        //call in the functions to load the views and actions.
+        loadViewStudent($pdo);
         updateStudent($pdo);
         createNewStudent($pdo);
     }

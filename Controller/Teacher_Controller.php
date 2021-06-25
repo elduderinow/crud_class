@@ -8,25 +8,27 @@ class Teacher_Controller
     {
         $pdo = Connection::Open();
 
+        //Requesting all the teachers
         function getTeachers($pdo)
         {
             //get all teachers
             $teacherloader = new TeacherLoader($pdo);
             $getteacher = $teacherloader->getTeachers($pdo);
-            $teachers = $teacherloader->createTeacher($getteacher);
-            return $teachers;
+            $result = $teacherloader->createTeacher($getteacher);
+            return $result;
         }
 
+        //Requesting all the classes
         function getClasses($pdo)
         {
             //get all classes
             $ClassLoader = new ClassLoader($pdo);
             $getClasses = $ClassLoader->getClasses($pdo);
-            $getClass = $ClassLoader->createClasses($getClasses);
-
-            return $getClass;
+            $result = $ClassLoader->createClasses($getClasses);
+            return $result;
         }
 
+        //Requesting the selected teachers info.
         function getSelectedTeachers($pdo)
         {
             $teacherloader = new TeacherLoader($pdo);
@@ -35,10 +37,13 @@ class Teacher_Controller
             return $result;
         }
 
+        //Requesting all the students for a teacher based on the selected teachers ID from the getter.
         function getStudentsFromTeacher($pdo)
         {
             $StuTeachLoader = new TeacherLoader($pdo);
             $getStuTeacher = $StuTeachLoader->getStudentsFromTeacher($pdo);
+
+            //If a teacher has no students, return a empty array because the teachers view expects an array to loop through.
             if(empty($getStuTeacher)) {
                 return [];
             }
@@ -46,19 +51,21 @@ class Teacher_Controller
             return $result;
         }
 
+        //Requesting all the classes connected to a teacher.
         function getSelectedClasses($pdo)
         {
             $selectClassLoader = new ClassLoader($pdo);
             $getSelClass = $selectClassLoader->getSelectedClasses($pdo);
+
+            //If a teacher has no assigned classes, return a empty array, bc the view expects and array.
             if(empty($getSelClass)) {
                 return [];
             }
             $result = $selectClassLoader->createSelectedClasses($getSelClass);
-
             return $result;
         }
 
-        //functions to load the teachers views
+        //Load 'teacher' view
         function loadViewTeachers($pdo, $getTeachers)
         {
             if (isset($_GET['page']) && $_GET['page'] === 'teacher') {
@@ -73,6 +80,7 @@ class Teacher_Controller
 
         }
 
+        //Load 'create new teacher' view
         function createNewTeacher($pdo, $getTeachers)
         {
 
@@ -90,11 +98,9 @@ class Teacher_Controller
                     }
                 }
             }
-
-
         }
 
-
+        //Load 'update teacher' view
         function updateTeachers($pdo)
         {
 

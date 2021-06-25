@@ -4,16 +4,16 @@
         <div class="container">
             <div class="mt-10 sm:mt-0">
                 <div class="bg-blue-600 py-4 px-4">
-                    <h3 class="text-lg font-medium leading-6 text-white">Update Students</h3>
+                    <h3 class="text-lg font-medium leading-6 text-white text-center text-blue-200">Update Students</h3>
                 </div>
                 <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
-                    <div class="md:col-span-1 px-4">
-                        <div class="px-4 sm:px-0 ">
+                    <div class="md:col-span-1 px-4 shadow overflow-hidden sm:rounded-md bg-white">
+                        <div class="p-5 sm:px-0 ">
                             <ul class="mt-1 text-sm text-gray-600">
                                 <li>ID: <?php echo $stu_select[0]->getSId() ?></li>
                                 <li>Name: <?php echo $stu_select[0]->getSFirstname()." ".$stu_select[0]->getSLastname() ?></li>
                                 <li>Email: <?php echo $stu_select[0]->getSEmail() ?></li><br>
-                                <li>Class: <?php echo $stu_select[0]->getClassName() ?></li>
+                                <li>Class: <a class="hover:text-blue-500" href="/?id=<?php echo $stu_select[0]->getClassId() ?>&class=update"><?php echo $stu_select[0]->getClassName() ?></a></li>
                                 <li>Location: <?php echo $stu_select[0]->getLocation() ?></li><br>
                                 <li>Teacher: <a class="hover:text-blue-500" href="/?id=<?php echo $stu_select[0]->getTId() ?>&teacher=update"><?php echo $stu_select[0]->getTFirstname()." ".$stu_select[0]->getTLastname() ?></a></li>
                             </ul>

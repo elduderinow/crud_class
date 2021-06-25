@@ -5,13 +5,13 @@
 
             <div class="mt-10 sm:mt-0">
                 <div class="bg-purple-600 py-4 px-4">
-                    <h3 class="text-lg font-medium leading-6 text-white">Create Teachers</h3>
+                    <h3 class="text-lg font-medium leading-6 text-white text-center text-purple-200">Create Teachers</h3>
                 </div>
                 <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
-                    <div class="md:col-span-1 px-4">
-                        <div class="px-4 sm:px-0">
+                    <div class="md:col-span-1 px-4 shadow overflow-hidden sm:rounded-md bg-white">
+                        <div class="p-5 sm:px-0">
                             <p class="mt-1 text-sm text-gray-600">
-                                Hello user, create students here.
+                                Hello user,<br><br> Create new teachers here assign them a class by adding them to a class int he class section.
                             </p>
                         </div>
                     </div>

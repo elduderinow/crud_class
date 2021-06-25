@@ -4,11 +4,11 @@
         <div class="container">
             <div class="mt-10 sm:mt-0">
                 <div class="bg-purple-600 py-4 px-4">
-                    <h3 class="text-lg font-medium leading-6 text-white">Update Teacher</h3>
+                    <h3 class="text-lg font-medium leading-6 text-white text-center text-purple-200">Update Teacher</h3>
                 </div>
                 <div class="md:grid md:grid-cols-3 md:gap-6 mt-5">
                     <div class="md:col-span-1 px-4 shadow overflow-hidden sm:rounded-md bg-white">
-                        <div class="p-5 sm:px-0 ">
+                        <div class="p-5 sm:px-0">
                             <ul class="mt-1 text-sm text-gray-600">
                                 <li>ID: <?php echo $selectedTeacher[0]->getId() ?></li>
                                 <li>
