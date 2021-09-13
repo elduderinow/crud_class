@@ -2,8 +2,9 @@
 Creating a CRUD system to store student, teacher and class information in the database and requesting this information in a nice designed system.
 
 - Repository: `crud_class`
-- Link github: https://github.com/elduderinow/crud_class
-- Language: HTML, CSS, PHP, SQL
+- Demo: http://class.yarrut.com/
+- Language: HTML, CSS, PHP, SQL, TAILWIND
+
 
 ## PURPOSE
 Learn to make, request and write to a database while creating a fictive APP for the student, teachers and classes of becode.
